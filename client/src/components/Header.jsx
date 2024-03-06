@@ -16,9 +16,9 @@ const Header = () => {
             </form>
 
             <div className='flex gap-3'>
-            {["Home", "About", "Signin"].map((item,index)=>{
+            {["home", "about", "signin"].map((item,index)=>{
                 return (
-                    <Link to={index===0 ?`/`:`/${item}`} key={index} className={`${index===2 ? "inline" : "hidden"} sm:inline cursor-pointer font-sans hover:underline`}>
+                    <Link to={index===0 ?`/`:`/${item}`} key={index} className={`${index===2 ? "inline" : "hidden"} sm:inline capitalize cursor-pointer font-sans hover:underline`}>
                         {item}
                     </Link>
                 )
