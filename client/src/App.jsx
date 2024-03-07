@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Home, About, Profile, Signin, Signout } from "./pages"
+import { Home, About, Profile, Signin, Signup} from "./pages"
 import Header from './components/Header'
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/signin' element={<Signin />} />
-        <Route path='/signout' element={<Signout />} />
+        <Route path='/signup' element={<Signup />} />
       </Routes>
     </BrowserRouter>
 
