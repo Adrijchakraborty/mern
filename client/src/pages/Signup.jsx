@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 
-const Signout = () => {
+const Signup = () => {
   const [formData, setFormData] = useState({})
   const [Error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  const navigate = useNavigate();
 
 
   const handleChange = (e) => {
@@ -31,6 +33,7 @@ const Signout = () => {
       }
       setLoading(false);
       setError(null)
+      navigate("/signin");
       //console.log(data)
     } catch (error) {
 
@@ -55,4 +58,4 @@ const Signout = () => {
   )
 }
 
-export default Signout
+export default Signup
