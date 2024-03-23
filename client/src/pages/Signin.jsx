@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link,useNavigate } from "react-router-dom"
 import {useDispatch , useSelector} from "react-redux"
 import {signInStart , signInSuccess, signInFailure} from "../redux/user/userSlice"
+import Oath from '../components/Oath'
 
 const Signin = () => {
   const [formData, setFormData] = useState({})
@@ -47,6 +48,7 @@ const Signin = () => {
         <input type="email" id="email" placeholder='email' className='border p-3 rounded-lg' onChange={handleChange} />
         <input type="password" id="password" placeholder='password' className='border p-3 rounded-lg' onChange={handleChange} />
         <button disabled={loading} className='bg-slate-500 p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>{loading ? "Loading" :"signin"}</button>
+        <Oath/>
       </form>
       <div className='flex'>
         <p>Dont have account?</p>
