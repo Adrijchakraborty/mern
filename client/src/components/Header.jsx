@@ -1,8 +1,10 @@
 import React from 'react'
 import Search from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 
 const Header = () => {
+    const { currentUser } = useSelector((state) => state.user)
     return (
         <div className='flex justify-between items-center px-8 bg-zinc-200 py-3'>
             <div className='font-bold text-lg sm:text-xl capitalize'>
@@ -19,10 +21,10 @@ const Header = () => {
             </form>
 
             <div className='flex gap-3'>
-                {["home", "about", "signin"].map((item, index) => {
+                {["home", "about", "profile"].map((item, index) => {
                     return (
                         <Link to={index === 0 ? `/` : `/${item}`} key={index} className={`${index === 2 ? "inline" : "hidden"} sm:inline capitalize cursor-pointer font-sans hover:underline`}>
-                            {item}
+                            {index === 2 ? <p>{currentUser ? <img className='w-7 rounded-full' src={currentUser.avatar} alt="Image" /> : 'Sign In'}</p> : <p>{item}</p>}
                         </Link>
                     )
                 })}
