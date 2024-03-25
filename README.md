@@ -24,7 +24,7 @@ Welcome to my MERN (MongoDB, Express.js, React.js, Node.js) stack project! This 
 4. **Experimenting with New Technologies**: Throughout the development process, I'll explore various libraries, tools, and techniques to expand my skill set.
 
 ## How to Run the Project:
-1. Clone the repository to your local machine: `git clone https://github.com/your-username/mern-stack-project.git`
+1. Clone the repository to your local machine: `git clone https://github.com/Adrijchakraborty/mern.git`
 2. Navigate to the project directory.
 3. Install dependencies for both the client and server:
    - For the client: `cd client && npm install`
