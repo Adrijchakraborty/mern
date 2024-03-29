@@ -14,7 +14,6 @@ Welcome to my MERN (MongoDB, Express.js, React.js, Node.js) stack project! This 
 - **React.js**: A JavaScript library for building user interfaces.
 - **Node.js**: A JavaScript runtime environment used for running server-side code.
 - **Mongoose**: An ODM (Object Data Modeling) library for MongoDB and Node.js, providing a straightforward schema-based solution to model application data.
-- **Axios**: A promise-based HTTP client for making requests to the server from the client-side.
 - **React Router**: A library for handling routing in React applications.
 
 ## Project Goals:
@@ -31,7 +30,7 @@ Welcome to my MERN (MongoDB, Express.js, React.js, Node.js) stack project! This 
    - For the server: `cd ../server && npm install`
 4. Ensure MongoDB is installed and running on your machine.
 5. Start the server: `npm start` inside the `server` directory.
-6. Start the client: `npm start` inside the `client` directory.
+6. Start the client: `npm run dev` inside the `client` directory.
 7. Access the application in your web browser at `http://localhost:5173`.
 
 ## Contributions:
