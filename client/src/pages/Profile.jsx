@@ -64,7 +64,7 @@ const Profile = () => {
     );
   };
   return (
-    <div className='mt-[15%] sm:mt-[30%] max-w-lg mx-auto px-3 sm:px-0'>
+    <div className='mt-[4rem] sm:mt-[5rem] max-w-lg mx-auto px-3 sm:px-0'>
       <h1 className='text-center text-3xl font-semi-bold my-5'>Profile</h1>
       <form className='flex flex-col gap-4'>
         <input
