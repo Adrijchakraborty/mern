@@ -26,7 +26,7 @@ export const Signin = async (req, res, next) => {
         if (!validpassword) return next(ErrorHandler(401, "wrong credentials"));
         const Token = jwt.sign({ id: validuser._id }, process.env.JWT_SECRET)
         const { password: pass, ...rest } = validuser._doc;
-        res.cookie('token', Token, { httpOnly: true }).status(200).json(rest);
+        res.cookie('access_token', Token, { httpOnly: true }).status(200).json(rest);
     } catch (error) {
         next(error);
     }
@@ -57,3 +57,12 @@ export const Google = async (req, res, next) => {
         next(error)
     }
 }
+
+export const signOut = async (req, res, next) => {
+    try {
+      res.clearCookie('access_token');
+      res.status(200).json('User has been logged out!');
+    } catch (error) {
+      next(error);
+    }
+  };

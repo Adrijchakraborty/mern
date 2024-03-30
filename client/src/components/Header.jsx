@@ -24,7 +24,7 @@ const Header = () => {
                 {["home", "about", "profile"].map((item, index) => {
                     return (
                         <Link to={index === 0 ? `/` : `/${item}`} key={index} className={`${index === 2 ? "inline" : "hidden"} sm:inline capitalize cursor-pointer font-sans hover:underline`}>
-                            {index === 2 ? <p>{currentUser ? <img className='w-7 rounded-full object-contain' src={currentUser.avatar} alt="Image" /> : 'Sign In'}</p> : <p>{item}</p>}
+                            {index === 2 ? <p>{currentUser ? <img className='w-7 h-7 border-2 border-slate-500 rounded-full object-contain' src={currentUser.avatar} alt="Image" /> : 'Sign In'}</p> : <p>{item}</p>}
                         </Link>
                     )
                 })}

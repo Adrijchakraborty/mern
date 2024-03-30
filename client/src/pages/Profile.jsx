@@ -7,11 +7,11 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { app } from '../Firebase';
-import { updateUserStart, updateUserSuccess, updateUserFailure } from "../redux/user/userSlice.js";
+import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserSuccess, deleteUserStart, signOutUserStart } from "../redux/user/userSlice.js";
 import { useDispatch } from 'react-redux';
 
 const Profile = () => {
-  const { currentUser,loading,error } = useSelector(state => state.user);
+  const { currentUser, loading, error } = useSelector(state => state.user);
   const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
@@ -26,13 +26,19 @@ const Profile = () => {
   useEffect(() => {
     if (file) {
       handleFileUpload(file);
-      setTimeout(myGreeting, 20000);
+      setTimeout(myGreeting, 15000);
     }
   }, [file]);
+  useEffect(() => {
+    setTimeout(Hide, 20000);
+  }, [updateSuccess]);
 
 
   function myGreeting() {
     setValue(true)
+  }
+  function Hide() {
+    setUpdateSuccess(false)
   }
 
 
@@ -92,6 +98,39 @@ const Profile = () => {
       dispatch(updateUserFailure(error.message));
     }
   }
+
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
+
+  const handleSignOut = async () => {
+
+    try {
+      dispatch(signOutUserStart())
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(data.message));
+    }
+  }
   return (
     <div className='mt-[4rem] sm:mt-[5rem] max-w-lg mx-auto px-3 sm:px-0'>
       <h1 className='text-center text-3xl font-semi-bold my-5'>Profile</h1>
@@ -143,16 +182,16 @@ const Profile = () => {
           id='password'
           onChange={handleChange}
           className='p-3 rounded-lg' />
-        <button 
-        disabled={loading}
-        className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-85'>{loading ? "Loading..." : "update"}</button>
+        <button
+          disabled={loading}
+          className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-85'>{loading ? "Loading..." : "update"}</button>
       </form>
       <div className='capitalize flex justify-between my-2'>
-        <span className='text-red-700'>delete account</span>
-        <span className='text-red-700'>sign out</span>
+        <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>delete account</span>
+        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>sign out</span>
       </div>
 
-      <p className='text-red-700 mt-5'>{error ? error : ''}</p>
+      <p hidden={value} className='text-red-700 mt-5'>{error ? error : ''}</p>
       <p className='text-green-700 mt-5'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
