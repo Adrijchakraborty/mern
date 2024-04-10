@@ -9,6 +9,7 @@ import {
 import { app } from '../Firebase';
 import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserSuccess, deleteUserStart, signOutUserStart } from "../redux/user/userSlice.js";
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const { currentUser, loading, error } = useSelector(state => state.user);
@@ -185,6 +186,7 @@ const Profile = () => {
         <button
           disabled={loading}
           className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-85'>{loading ? "Loading..." : "update"}</button>
+          <Link to={"/createlisting"} className='uppercase bg-green-600 rounded-lg text-center p-3 text-white hover:opacity-95 disabled:opacity-85'>Create Listing</Link>
       </form>
       <div className='capitalize flex justify-between my-2'>
         <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>delete account</span>
