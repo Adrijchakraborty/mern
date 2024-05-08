@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Home, About, Profile, Signin, Signup, CreateListing, UpdateListing } from "./pages"
+import { Home, About, Profile, Signin, Signup, CreateListing, UpdateListing, Listing } from "./pages"
 import Header from './components/Header'
 import Private from './components/Private'
 
@@ -13,6 +13,7 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/listing/:Id' element={<Listing />} />
         <Route element={<Private />} >
           <Route path='/profile' element={<Profile />} />
           <Route path='/createlisting' element={<CreateListing />} />
